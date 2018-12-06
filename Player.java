@@ -1,48 +1,45 @@
 import java.util.*;
 //the time I put on coding  homework4 is less than before , thanks god so much because I am afraid that I can't hang out the homework on time.
 public class Player {
-	private String name;// 玩家名字
-	private int chips;// 玩家的總籌碼
-	private int bet;//玩家下注的籌碼
+	private String n;// 名字
+	private int c;// total
+	private int b;//籌碼
 	private ArrayList<Card> oneRoundCard=new ArrayList<Card>();// 此局的卡
 
 	public Player(String name, int chips) {
-		this.name=name;
-		this.chips=chips;
+	   this.n=name;//避免混淆物件
+	   this.c=chips;
 	}
-	
+	//回傳姓名
 	public String getName() {
-		return name;
+		return n;
 	}
-	public int makeBet() {
-		bet=1;
-		if(chips<=0) {
-			return 0;
-		}
-		
-		return bet;
+	public int makeBet() {//下籌碼
+		b=1;
+		if(c<=0) {
+		   return 0;
+		}//檢查籌碼不能為<0
+		return b; 
 	}
-	
 	public void setOneRoundCard(ArrayList<Card> cards) {
 		oneRoundCard=cards;
-	}
+	}//設定玩家牌組
+	//是否要牌
 	public boolean hitMe() {
 		int a1=0;
 		for(int i=0;i<oneRoundCard.size();i++) {
 			Card c=new Card(null,0);
 			c=oneRoundCard.get(i);
-			a1+=c.getRank();
+			a1+=c.getRank();//得到新點數
 		}
-		
+		//點數<16才要牌
 		if(a1<=16) {
 			return true;
 		}else {
 			return false;
-		}
-		
-		
+		}	
 	}
-	
+	//得到所有值總和
 	public int getTotalValue() {
 		int a2=0;
 		for(int i=0;i<oneRoundCard.size();i++) {
@@ -53,13 +50,13 @@ public class Player {
 		return a2;
 	}
 	public  int getCurrentChips() {
-		return chips;
-	}
+		    return c;
+	}//回傳籌碼
 	public void increaseChips(int diff) {
-		chips=chips+diff;
-	}
+		   c=c+diff;
+	}//籌碼的改變
 	public void sayHello() {
-		System.out.println("Hello , I am "+name+" .");
-		System.out.println("I have "+chips+" chips");
-	}
+		System.out.println("Hello , I am "+n+" .");
+		System.out.println("I have "+c+" chips");
+	}//顯示出玩家打招呼
 }
